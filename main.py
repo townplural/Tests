@@ -1,16 +1,24 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import requests
+from settings import TOKEN
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+def get_headers():
+    return{
+        'Content-Type': 'application/json',
+        'Authorization': f'OAuth {TOKEN}'
+    }
+
+
+def create_folder(folder_name):
+    uri = f'v1/disk/resources'
+    base_host = 'https://cloud-api.yandex.net/'
+    request_url = base_host + uri
+    params = {'path': f'{folder_name}', 'fields': 1}
+    response = requests.put(request_url, headers=get_headers(), params=params)
+    return response
+
+
+
