@@ -2,9 +2,6 @@ import requests
 from settings import TOKEN
 
 
-
-
-
 def get_headers():
     return{
         'Content-Type': 'application/json',
